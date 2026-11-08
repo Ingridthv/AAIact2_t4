@@ -1,64 +1,60 @@
-# AAIact1_t4
+# AAIact2_t4
 
 **Autora:** Ingrid Arcadio Aparicio
 
-**Actividad:** Act1. Introducción a Spring Boot: Configuración y Primeros Controladores
+**Actividad:** Act2. Spring MVC: Vistas con Thymeleaf, DTO y manejo de parámetros
 
 ## Descripción
 
-En esta actividad configuré mi entorno de desarrollo con Java y Spring Boot, creé un proyecto con Spring Initializr y desarrollé controladores para atender peticiones web. Primero probé el proyecto en mi computadora y después lo desplegué en un VPS.
+Este proyecto es una copia de la Actividad 1. Se agregaron vistas con Thymeleaf, una clase DTO, endpoints con `@RequestParam` y `@PathVariable`, un formulario con `@ModelAttribute`, una propiedad leída con `@Value` y un endpoint POST probado en Postman.
 
-## Lo que realicé
+## Archivos elaborados
 
-1. Verifiqué la instalación del JDK 21 en mi computadora.
-2. Configuré Visual Studio Code con las extensiones de Java y Spring Boot.
-3. Creé el proyecto con Maven y las dependencias Spring Web, Thymeleaf y Spring Boot DevTools.
-4. Desarrollé los ejemplos del video: una respuesta HTML y una respuesta JSON.
-5. Creé mis propios controladores y endpoints.
-6. Probé los endpoints en `localhost` antes de desplegarlos.
-7. Generé el archivo `.jar` con Maven.
-8. Instalé Java 21 en el VPS y permití el puerto 8082 en el firewall.
-9. Subí el `.jar` al VPS con SCP y lo ejecuté con `nohup`.
-10. Verifiqué que los endpoints respondieran desde fuera del servidor.
+| Archivo | Función |
+|---|---|
+| `MateriaDTO.java` | DTO con el nombre y el área de una materia |
+| `MateriaController.java` | Controlador MVC que devuelve vistas y un POST en JSON |
+| `lista.html` | Vista que recorre las materias con `th:each` |
+| `formulario.html` | Formulario para registrar una materia |
+| `application.properties` | Contiene la propiedad `app.autora` |
 
-## Tecnologías
+## Endpoints
 
-- Java 21
-- Spring Boot 4.1.2
-- Spring Web
-- Thymeleaf
-- Spring Boot DevTools
-- Maven
-- Ubuntu 24.04
-- Git y GitHub
+| Función | Método | Enlace |
+|---|---|---|
+| Lista con `th:each` y `@Value` | GET | http://179.197.82.130:8083/catalogo/lista |
+| Filtro con `@RequestParam` | GET | http://179.197.82.130:8083/catalogo/lista?area=Redes |
+| Detalle con `@PathVariable` | GET | http://179.197.82.130:8083/catalogo/materia/0 |
+| Formulario con `@ModelAttribute` | GET y POST | http://179.197.82.130:8083/catalogo/nueva |
+| POST REST con el DTO | POST | http://179.197.82.130:8083/catalogo/api |
 
-## Controladores y endpoints propios
+## Capturas
 
-| Controlador | Endpoint | Respuesta | Enlace |
-|---|---|---|---|
-| `ProyectoController` | `/proyecto` | Página HTML con el nombre del proyecto | http://179.197.82.130:8082/proyecto |
-| `EstudianteRestController` | `/materias` | JSON con una lista de materias | http://179.197.82.130:8082/materias |
-| `EstudianteRestController` | `/estudiante` | JSON con iniciales y semestre | http://179.197.82.130:8082/estudiante |
+### Lista con `th:each` y `@Value`
 
-## Ejemplos del video
+![Lista](capturas/cap1.png)
 
-| Controlador | Endpoint | Respuesta | Enlace |
-|---|---|---|---|
-| `EjemploController` | `/detalles_info` | Página HTML | http://179.197.82.130:8082/detalles_info |
-| `EjemploRestController` | `/detalles_info2` | JSON | http://179.197.82.130:8082/detalles_info2 |
+### Formulario con `@ModelAttribute`
 
-## Ejecución local
+![Formulario](capturas/cap4.png)
 
-```powershell
-.\mvnw.cmd spring-boot:run
-```
+### Resultado del formulario
 
-Después, abre http://localhost:8080/proyecto en el navegador.
+![Resultado](capturas/cap5.png)
+
+### Filtro con `@RequestParam`
+
+![RequestParam](capturas/cap2.png)
+
+### Detalle con `@PathVariable`
+
+![PathVariable](capturas/cap3.png)
+
+### POST probado en Postman
+
+![Postman](capturas/cap6.png)
 
 ## Despliegue
 
-El proyecto corre en el VPS en el puerto **8082**:
-
-```bash
-nohup java -jar ~/iaaact1t4-0.0.1-SNAPSHOT.jar --server.port=8082 > ~/app.log 2>&1 &
-```
+- **Actividad 2:** puerto **8083**, en la carpeta `~/act2` del VPS.
+- **Actividad 1:** sigue corriendo en el puerto **8082**.

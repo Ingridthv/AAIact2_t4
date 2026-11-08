@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <h1>Materias</h1>
+    <p th:text="'Proyecto de ' + ${autora}"></p>
+    <ul>
+        <li th:each="m : ${materias}" th:text="${m.nombre} + ' - ' + ${m.area}"></li>
+    </ul>
+</body>
+</html>
